@@ -1,0 +1,181 @@
+
+
+
+
+->allocation of space in struct is done through cycles.
+-->right shift ---> x>>y =>x/2pow y
+-->left shift-->x<<y =>x*(2**y)
+-->tiled ~  -->it is like 1's compliment.
+-->two numbers appeared once
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+int main() {
+    int n;
+    cin>>n;
+    int a[n];
+    
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    int k=0;
+    for(int i=0;i<n;i++)
+    {
+        k=k^a[i];
+    }
+    int c=0;
+    while(1)
+    {
+        if((n>>c)&1)
+        {
+            break;
+        }
+        c+=1;
+    }
+    int b1=0;
+    int b2=0;
+    for(int i=0;i<n;i++)
+    {
+        if((a[i]>>c)&1)
+        {
+            b1=b1^a[i];
+        }
+        else
+        {
+            b2=b2^a[i];
+        }
+    }
+    cout<<b1<<" "<<b2;
+    return 0;
+}
+
+
+unique number 
+----------
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+int main() {
+   int n;
+   cin>>n;
+   int a[n];
+   for(int i=0;i<n;i++)
+   {
+       cin>>a[i];
+   }
+   int res=0;
+   for(int i=0;i<31;i++)
+   {
+       int c=0;
+       for(int j=0;j<n;j++)
+       {
+           if((a[j]&(1<<i))>0) {c+=1;}
+       }
+       if(c%3!=0)
+       {
+           res=res|(1<<i);
+       }
+   }
+    cout<<res<<" ";
+    return 0;
+}
+
+
+
+AND BETWEEN L AND R
+---------------------
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int n;
+    cin>>n;
+    int a[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    int b[n][32];
+    for(int i=0;i<n;i++)
+    {
+        for(int j=32;j>=0;j--)
+        {
+            int m=((1<<j)&a[i]);
+            if(m)
+            {
+                b[i][j]=1;
+            }
+            else
+            {
+                b[i][j]=0;
+            }
+        }
+    }
+    for(int i=1;i<n;i++)
+    {
+        for(int j=0;j<32;j++)
+        {
+            b[i][j]=b[i][j]+b[i-1][j];
+        }
+    }
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<32;j++)
+        {
+            cout<<b[i][j]<<" ";
+        }
+        cout<<"\n";
+    }
+    int l,r;
+    cin>>l>>r;
+    int s=r-l+1,ans=0;
+    for(int j=0;j<32;j++)
+    {
+        if(l==0)
+        {
+            if(b[r][j]>=s)
+            {
+                ans=ans|(1<<j);
+            }
+        }
+        else
+        {
+            if((b[r][j]-b[l-1][j])>=s)
+            {
+                ans=ans|(1<<j);
+            }
+        }
+    }
+    cout<<ans;
+    return 0;
+}
+
+
+
+
+
+count possible ways to construct buildings
+-----------------------------------------
+
+long long a=1,b=2,c;
+	    if(n==1)
+	    {
+	        return 4;
+	    }
+	    for(long long i=2;i<=n;i++)
+	    {
+	        c=(a+b)%1000000007;
+	        a=b;
+	        b=c;
+	    }
+	    return (c*c)%1000000007;
+	    
+	    
+	}
+
+
+
+
+
+
+
