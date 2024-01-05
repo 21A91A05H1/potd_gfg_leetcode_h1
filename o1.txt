@@ -174,7 +174,26 @@ long long a=1,b=2,c;
 	}
 
 
-
+longest increasing subsequence
+--------------------------------
+ int lengthOfLIS(vector<int>& nums) {
+        vector<int>v;
+        int n=nums.size(),k;
+        v.push_back(nums[0]);
+        for(int i=1;i<n;i++)
+        {
+            k=lower_bound(v.begin(),v.end(),nums[i])-v.begin();
+            if(k>=v.size())
+            {
+                v.push_back(nums[i]);
+            }
+            else
+            {
+                v[k]=nums[i];
+            }
+        }
+        return v.size();
+    }
 
 
 
