@@ -195,6 +195,26 @@ longest increasing subsequence
         return v.size();
     }
 
+shortest path
+-------------
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    long long n,a,b;
+    cin>>n>>a>>b;
+    int x=a^b;
+    int k=__builtin_popcount(x);
+    if(k%2==0)
+    {
+        cout<<(k/2)<<endl;
+    }
+    else
+    {
+        cout<<-1<<endl;
+    }
+}
 
 
 
