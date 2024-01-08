@@ -217,4 +217,24 @@ int main()
 }
 
 
+Arithmetic Slices II - Subsequence
+-------------------------------------
+vector<unordered_map<long long int,long long int>>mpp(nums.size());
+        long long cnt=0;
+        for(long long i=0;i<nums.size();i++)
+        {
+            for(long long int j=0;j<i;j++)
+            {
+                long long cd=(long long)nums[i]-(long long)nums[j];
+                long long c=mpp[j][cd];
+                long long d=mpp[i][cd];
+                cnt+=c;
+                mpp[i][cd]=c+d+1;
+
+                
+            }
+        }
+        return cnt;
+        
+    }
 
