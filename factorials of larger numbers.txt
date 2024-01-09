@@ -1,0 +1,31 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+   int n;
+   cin>>n;
+    vector<long long>v(n+1,-1);
+    v[0]=1;
+    int c=0,p,j=0,d,i;
+    for(int i=1;i<=n;i++)
+    {
+        j=0;
+        c=0;
+        while(v[j]!=-1)
+        {
+            p=i*v[j]+c;
+            d=p%10;
+            v[j]=d;
+            c=p/10;
+            j+=1;
+        }
+        v[j]=c;
+       
+    }
+    for(int i=v.size()-1;i>=0;i--)
+    {
+        cout<<v[i];
+    }
+    return 0;
+}
