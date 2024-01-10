@@ -1,0 +1,34 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+int mod = 1e9+7;
+int be(int a,int b)
+{
+    int res=1;
+     while(b)
+    {
+        if(b&1)
+        {
+            b=b-1;
+            res*=a;
+        }
+        else
+        {
+            b=b/2;
+            a=a*a;
+        }
+    }
+    return res;
+}
+int in(int b)
+{
+    int x=be(b,mod-2);
+}
+int main() {
+    int a,b;
+    cin>>a>>b;
+  
+    int ans=be(a,b);
+    cout<<in(b);
+    return 0;
+}
