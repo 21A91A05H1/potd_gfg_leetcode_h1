@@ -1,0 +1,31 @@
+ Node* insertionSort(struct Node* head)
+    {
+        //code here
+       Node* temp=head,*temp1=head;
+       int j;
+       vector<int>v;
+       while(temp!=NULL)
+       {
+           v.push_back(temp->data);
+           temp=temp->next;
+       }
+       for(int i=1;i<v.size();i++)
+       {
+           int k=v[i];
+           j=i-1;
+           while(j>=0 && v[j]>k)
+           {
+               v[j+1]=v[j];
+               j-=1;
+           }
+           v[j+1]=k;
+       }
+       int l=0;
+       while(temp1!=NULL)
+       {
+           temp1->data=v[l];
+           l+=1;
+           temp1=temp1->next;
+       }
+       return head;
+    }
