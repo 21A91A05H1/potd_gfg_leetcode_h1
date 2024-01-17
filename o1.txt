@@ -27,7 +27,7 @@ int main() {
     int c=0;
     while(1)
     {
-        if((n>>c)&1)
+        if((k>>c)&1)
         {
             break;
         }
