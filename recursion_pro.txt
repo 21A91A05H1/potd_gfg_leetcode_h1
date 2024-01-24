@@ -1,0 +1,96 @@
+check for sorted array
+-------------------------
+#include<bits/stdc++.h>
+using namespace std;
+bool is(int *arr,int n)
+{
+    if(n==0 or n==1) return true;
+    if(arr[0]>arr[1]) return false;
+    bool a=is(arr+1,n-1);
+    if(a) return true;
+    return false;
+}
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[5]= {2,7,8,19,17};
+    cout<<is(arr,5);
+}
+
+
+first occurance
+--------------------
+
+#include<bits/stdc++.h>
+using namespace std;
+bool is(int *arr,int n)
+{
+    if(n==0 or n==1) return true;
+    if(arr[0]>arr[1]) return false;
+    bool a=is(arr+1,n-1);
+    if(a) return true;
+    return false;
+}
+int isf(int *arr,int n,int k)
+{
+    if(n==0) return -1;
+    if(arr[0]==k) return 0;
+    int a=isf(arr+1,n-1,k);
+    if(a==-1) return -1;
+    else return a+1;
+    
+}
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[6]= {2,7,8,19,17,17};
+    cout<<is(arr,6)<<endl;
+    cout<<isf(arr,6,n);
+}
+
+
+
+
+last occurance
+--------------
+#include<bits/stdc++.h>
+using namespace std;
+bool is(int *arr,int n)
+{
+    if(n==0 or n==1) return true;
+    if(arr[0]>arr[1]) return false;
+    bool a=is(arr+1,n-1);
+    if(a) return true;
+    return false;
+}
+int isf(int *arr,int n,int k)
+
+
+{
+    if(n==0) return -1;
+    //if(arr[0]==k) return 0;
+    int a=isf(arr+1,n-1,k);
+    if(a==-1)
+    {
+        if(arr[0]==k)
+        {
+            return 0;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+    else return a+1;
+    
+}
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[6]= {2,7,8,19,17,17};
+    cout<<is(arr,6)<<endl;
+    cout<<isf(arr,6,n);
+}
