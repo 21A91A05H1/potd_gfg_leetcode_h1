@@ -1,0 +1,181 @@
+#include<bits/stdc++.h>
+using namespace std;
+int dp[1000];
+int fib(int n)
+{
+    if(n<=1) return n;
+    if(dp[n]!=-1) return dp[n];
+    return dp[n]=fib(n-1)+fib(n-2);
+}
+int main()
+{
+    int n;
+    cin>>n;
+    memset(dp,-1,sizeof(dp));
+    cout<<fib(n);
+}
+
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int dp[100000];
+int fun(int id,int a[],int n,int k)
+{
+    if(id==n-1) return 0;
+    if(dp[id]!=-1)
+        {
+            return dp[id];
+        }
+        int ans=INT_MAX;
+        for(int i=1;i<=k;i++)
+        {
+          if(id+i<=n-1)
+          {
+              ans=min(ans,abs(a[id]-a[id+i])+fun(id+i,a,n,k));
+          }
+        }
+          
+    return dp[id]=ans;
+}
+int main()
+{
+    int n,k;
+    
+    
+    cin>>n>>k;
+    int a[n];
+    memset(dp,-1,sizeof(dp));
+    for(int i=0;i<n;i++) 
+    {
+        cin>>a[i];
+    }
+
+    int x=fun(0,a,n,k);
+    cout<<x;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//rod cutting
+-----------
+#include<bits/stdc++.h>
+using namespace std;
+int dp[100000];
+int fun(int a[],int n)
+{
+    if(n==0) return 0;
+    if(dp[n]!=-1)
+    {
+        return dp[n];
+    }
+    int mainans=INT_MIN;
+    for(int i=0;i<n;i++)
+    {
+        int l=i+1;
+        int subp =a[i]+fun(a,n-l);
+        mainans=max(mainans,subp);
+    }
+    return dp[n]=mainans;
+    
+}
+int main()
+{
+    int n;
+    cin>>n;
+    memset(dp,-1,sizeof(dp));
+    int a[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    cout<<fun(a,n);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Count the nodes at distance K from leaf
+---------------------------------------
+class Solution
+{
+    public:
+    //Function to return count of nodes at a given distance from leaf nodes.
+    int c=0;
+    bool check(Node* root, int k, int x)
+    {
+        if(!root) return false;
+        if(x==k)
+        {
+            if(!root->left&&!root->right) return true;
+            return false;
+        }
+        return check(root->left,k,x+1)||check(root->right,k,x+1);
+    }
+    void solve(Node* root, int k)
+    {
+        if(!root) return;
+        if(check(root,k,0)) c++;
+        solve(root->left,k);
+        solve(root->right,k);
+        
+    }
+    int printKDistantfromLeaf(Node* root, int k)
+    {
+        //Add your code here. 
+        solve(root, k);
+        return c;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+152. Maximum Product Subarray - Solution
+1186. Maximum Subarray Sum with One Deletion - Solution
+1493. Longest Subarray of 1's After Deleting One Element - Solution
+1749. Maximum Absolute Sum of Any Subarray - Solution
+5. Longest Palindromic Substring - Solution
