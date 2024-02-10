@@ -1,0 +1,51 @@
+class Solution {
+public:
+    int m=0;
+    int dp[10000];
+    int isp(string k)
+    {
+        int i=0,j=k.size()-1;
+        while(i<j)
+        {
+            if(k[i]!=k[j])
+            {
+                return 0;
+            }
+            else{
+                i++;
+                j--;
+            }
+            
+        }
+        return 1;
+    }
+    int fun(string s,int i)
+    {
+        if(i==s.size())
+        {
+            return 0;
+        }
+        if(dp[i]!=-1) return dp[i];
+        string k="";
+        for(int j=i;j<s.size();j++)
+        {
+            k+=s[j];
+            
+            if(isp(k))
+            {
+                //cout<<k<<" ";
+                m+=1;
+            }
+           fun(s,j+1);
+        }
+       
+        return dp[i]=m;
+
+    }
+    int countSubstrings(string s) {
+        memset(dp,-1,sizeof(dp));
+        int p=fun(s,0);
+        return p;
+
+    }
+};
