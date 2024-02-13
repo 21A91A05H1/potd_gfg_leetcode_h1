@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<vector<int>> allCellsDistOrder(int r, int c, int rC, int cC) {
+        map<pair<int,int>,int>m;
+        for(int i=0;i<r;i++)
+        {
+            for(int j=0;j<c;j++)
+            {
+                int d=abs(i-rC)+abs(j-cC);
+                m[{i,j}]=d;
+
+            }
+        }
+        vector<pair<pair<int, int>, int>> vec(m.begin(), m.end());
+        sort(vec.begin(), vec.end(), [](const auto& a, const auto& b) {
+            return a.second < b.second;
+        });
+        vector<vector<int>>res;
+        for(auto it:vec)
+        {
+            res.push_back({it.first.first,it.first.second});
+        }
+        return res;
+    }
+};
