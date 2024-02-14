@@ -1,0 +1,102 @@
+#include<bits/stdc++.h>
+using namespace std;
+void bfs(vector<int>adj[],int node,vector<int>&vi,vector<int>&ar){
+    queue<int>q;
+    q.push(node);
+    vi[node]=1;
+    ar[node]=0;
+    while(!q.empty())
+    {
+        int t=q.front();
+        cout<<t<<" ";
+        q.pop();
+        for(auto it:adj[t]){
+            if(!vi[it]){
+                q.push(it);
+                ar[it]=ar[t]+1;
+                vi[it]=1;
+            }
+        }
+    }
+}
+int main(){
+    int n,e;
+    cin>>n>>e;
+    vector<int>adj[n+1];
+    for(int i=0;i<e;i++){
+        int u,v;
+        cin>>u>>v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    vector<int>vi(n+1,0);
+    vector<int>ar(n+1,0);
+    bfs(adj,1,vi,ar);
+    cout<<endl;
+    for(int i=1;i<ar.size();i++)
+    {
+        cout<<ar[i]<<" ";
+    }
+}
+
+
+
+
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void sss(vector<int> adj[], int node, vector<int>& distances) {
+    queue<pair<int,int>> q;
+    q.push({node, 0}); 
+    distances[node] = 0;
+    while (!q.empty()) {
+        int currNode = q.front().first;
+        int dist = q.front().second;
+        q.pop();
+        for (auto neighbor : adj[currNode]) {
+            if (distances[neighbor] == -1) {
+                distances[neighbor] = dist + 1;
+                q.push({neighbor, dist + 1});
+            }
+        }
+    }
+}
+
+int main() {
+    int n, e;
+    cin >> n >> e;
+    vector<int> adj[n + 1];
+    for (int i = 0; i < e; i++) {
+        int u, v;
+        cin >> u >> v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    vector<int> distances(n + 1, -1);
+    sss(adj, 1, distances);
+    for (int i = 1; i <= n; i++) {
+        cout << "Distance from node 1 to node " << i << ": " << distances[i] << endl;
+    }
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
